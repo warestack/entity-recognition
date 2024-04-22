@@ -9,7 +9,7 @@ The Entity-Recognition library utilizes `spaCy`, `BERTopic`, and `Transformers` 
   - [Installation](#installation)
     - [Prerequisites](#prerequisites)
     - [Getting Started](#getting-started)
-    - [Usage](#usage)
+  - [Usage](#usage)
   - [Development](#development)
     - [Setting Up a Development Environment](#setting-up-a-development-environment)
   - [Testing](#testing)
@@ -38,7 +38,7 @@ Install the library directly from PyPI:
 pip install entity-recognition-library
 ```
 
-### Usage
+## Usage
 
 Here’s how to use the Entity Recognition library in your Python scripts:
 
