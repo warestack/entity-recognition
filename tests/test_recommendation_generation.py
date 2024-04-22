@@ -1,7 +1,7 @@
 import pytest
 from async_asgi_testclient import TestClient
 
-from entity_recognition_service.methods.recommendation_generation import (
+from entity_recognition_service.functions.recommendation_generation import (
     dynamic_score_entities,
     recommend_technologies,
 )

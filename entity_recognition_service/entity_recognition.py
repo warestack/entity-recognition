@@ -1,8 +1,8 @@
 import json
 import asyncio
-from methods.entity_extraction import extract_tech_entities, initialize_matcher_with_patterns
-from methods.recommendation_generation import dynamic_score_entities, recommend_technologies
-from methods.topic_classification import classify_text
+from functions.entity_extraction import extract_tech_entities, initialize_matcher_with_patterns
+from functions.recommendation_generation import dynamic_score_entities, recommend_technologies
+from functions.topic_classification import classify_text
 from models import load_bertopic_model
 from utils import load_json_file
 
