@@ -1,5 +1,5 @@
 
-fly.toml
+.ruff_cache/
 
 
 # Byte-compiled / optimized / DLL files

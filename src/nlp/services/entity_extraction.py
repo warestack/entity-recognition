@@ -1,21 +1,11 @@
 from spacy.matcher import Matcher
 
-from src.nlp.config import nlp_config
-from src.nlp.models import load_spacy_model
-from src.nlp.utils import load_json_file
+from nlp.models import load_spacy_model
+from nlp.utils import load_json_file
 
 nlp = load_spacy_model()
 
 
-def load_tech_entities():
-    """
-    Load technology entities from a JSON file.
-    """
-
-    # Load the technology entities from the JSON file
-    tech_entities = nlp_config.CORPUS_DIR
-
-    return load_json_file(tech_entities)
 
 
 def initialize_matcher_with_patterns(tech_entities):

@@ -1,19 +1,15 @@
+import asyncio
 import json
 import os
 
 import aiofiles
 import torch
 import torch.nn.functional as F
-from fastapi import FastAPI
 from scipy.spatial.distance import cosine
 
+from nlp.models import load_embeddings_model
 
-# Function to access the global FastAPI application instance
-def get_application() -> FastAPI:
-    from src.main import app
-
-    return app
-
+tokenizer, model = asyncio.run(load_embeddings_model())
 
 async def load_json_file(file_path):
     # Detailed explanation of the function's purpose
@@ -68,9 +64,7 @@ def get_embedding(text):
     Returns:
         torch.Tensor: The embedding representation of the text.
     """
-    app = get_application()
-    tokenizer = app.state.tokenizer
-    model = app.state.model
+
 
     # Tokenize the input text and prepare it for the model
     inputs = tokenizer(text, return_tensors="pt", padding=True, truncation=True, max_length=512)
