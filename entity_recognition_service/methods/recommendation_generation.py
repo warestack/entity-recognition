@@ -1,4 +1,4 @@
-from nlp.utils import cosine_similarity, get_embedding
+from utils import cosine_similarity, get_embedding
 
 
 def dynamic_score_entities(entities, topic_keywords, user_input, tech_entities):

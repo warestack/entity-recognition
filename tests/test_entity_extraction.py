@@ -1,6 +1,6 @@
 import pytest
 
-from src.nlp.services.entity_extraction import (
+from entity_recognition_service.methods.entity_extraction import (
     extract_tech_entities,
     initialize_matcher_with_patterns,
     load_tech_entities,

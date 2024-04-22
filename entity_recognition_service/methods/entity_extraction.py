@@ -1,7 +1,7 @@
 from spacy.matcher import Matcher
 
-from nlp.models import load_spacy_model
-from nlp.utils import load_json_file
+from models import load_spacy_model
+from utils import load_json_file
 
 nlp = load_spacy_model()
 
