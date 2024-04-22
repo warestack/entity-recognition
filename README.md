@@ -1,131 +1,87 @@
 # Entity-Recognition
 
-The Entity-Recognition project leverages FastAPI, spaCy, BERTopic, and Transformers to provide a robust technology entity recognition system. This application identifies technology-related entities within texts and suggests relevant technologies using NLP techniques.
+The Entity-Recognition library utilizes `spaCy`, `BERTopic`, and `Transformers` to provide a robust technology entity recognition system capable of identifying technological entities within texts and suggesting relevant technologies using advanced NLP techniques.
 
 ## Table of Contents
 - [Entity-Recognition](#entity-recognition)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
-  - [Quick Start](#quick-start)
+  - [Installation](#installation)
     - [Prerequisites](#prerequisites)
     - [Getting Started](#getting-started)
-  - [API Usage](#api-usage)
-    - [Process Texts Endpoint](#process-texts-endpoint)
+    - [Usage](#usage)
   - [Development](#development)
-    - [Local Setup](#local-setup)
+    - [Setting Up a Development Environment](#setting-up-a-development-environment)
   - [Testing](#testing)
-  - [Configuration](#configuration)
   - [Contributing](#contributing)
   - [License](#license)
 
 ## Features
 
-- **Technology Entity Extraction**: Extract technology terms and tools from texts.
-- **Recommendation System**: Offer recommendations based on the context and the entities identified.
-- **BERTopic Integration**: Utilize topic modeling to improve the relevance of recommendations.
-- **spaCy Matchers**: Employ custom NLP patterns for precise entity recognition.
-- **Docker Compatibility**: Easy deployment with Docker and Docker Compose.
+- **Technology Entity Extraction**: Automatically extract technology-related terms and tools from texts.
+- **Recommendation System**: Provides context-based technology recommendations.
+- **BERTopic Integration**: Leverages topic modeling to enhance the relevance of recommendations.
+- **spaCy Matchers**: Utilizes custom NLP patterns for precise entity recognition.
 
-## Quick Start
+## Installation
 
 ### Prerequisites
 
-- Docker
+- Python 3.6+
+- pip
 
 ### Getting Started
 
-Clone the repository and navigate to the directory:
+Install the library directly from PyPI:
 
 ```bash
-git clone https://github.com/cgoncalves94/entity-recognition.git
-cd entity-recognition
+pip install entity-recognition-library
 ```
-Build and run the application using Docker:
 
-```
-docker-compose up --build
-```
-This command builds the Docker image and starts the service. The API will be available at http://localhost:16000/ by default.
+### Usage
 
+Here’s how to use the Entity Recognition library in your Python scripts:
 
-## API Usage
+```python
+from entity_recognition import EntityRecognizer
 
-### Process Texts Endpoint
+# Create an instance of the recognizer
+recognizer = EntityRecognizer()
 
-- **URL**: `/nlp/process/`
-- **Method**: `POST`
-- **Content-Type**: `application/json`
-- **Body**:
+# Example texts
+texts = ["I need an Express.js Mongo database backend", "and a React TypeScript frontend for my project"]
 
-```json
-{
-  "texts": ["Your sample text here", "Another sample text"]
-}
-```
-- **Successful Response:**:
-```json
-[
-  {
-    "input_text": "Your sample text here",
-    "predicted_topic_name": "Technology",
-    "extracted_entities": [
-      {
-        "entity_name": "Python",
-        "score": 0.9,
-        "category": "Programming Language"
-      }
-    ],
-    "recommendations": [
-      {
-        "category": "Programming Language",
-        "recommendation": "Python"
-      }
-    ]
-  }
-]
+# Process texts
+results = recognizer.process_texts(texts)
+print(results)
 ```
 
 ## Development
 
-### Local Setup
+### Setting Up a Development Environment
 
-Set up the project locally (without Docker) by following these steps:
-
-1. **Create and Activate a Virtual Environment**:
+1. **Clone the repository**:
+   ```
+   git clone https://github.com/cgoncalves94/entity-recognition.git
+   cd entity-recognition
+   ```
+2. **Create and Activate a Virtual Environment**:
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
    ```
-2. **Install Dependencies**:
+3. **Install Dependencies**:
     ```
     pip install -r requirements/dev.txt
     ```
-3. **Run the Application**:
-   ```
-   uvicorn src.main:app --reload
-   ```
+
 
 ## Testing
 
-Run tests using Docker:
+Run tests to ensure the setup is correct:
 
 ```
-docker-compose exec app pytest
-```
-
-## Configuration
-
-Environmental variables are used for configuration which can be set in a .env file:
-
-- `MODEL_NAME`: Path to the BERTopic model.
-- `CORPUS_DIR`: Directory containing tech_entities.json.
-
-Example `.env` file:
-
-
-```
-MODEL_NAME=model/bertopic_model
-CORPUS_DIR=data/tech_entities.json
+pytest
 ```
 
 ## Contributing
