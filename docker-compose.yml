@@ -1,0 +1,19 @@
+services:
+  app:
+    container_name: esr_new_app
+    image: app_image
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./:/src
+    ports:
+      - "16000:8000"
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
