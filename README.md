@@ -35,7 +35,7 @@ The Entity-Recognition library utilizes `spaCy`, `BERTopic`, and `Transformers` 
 Install the library directly from PyPI:
 
 ```bash
-pip install entity-recognition-library
+pip install entity-recognition-service
 ```
 
 ## Usage
@@ -43,7 +43,7 @@ pip install entity-recognition-library
 Here’s how to use the Entity Recognition library in your Python scripts:
 
 ```python
-from entity_recognition import EntityRecognizer
+from entity_recognition_service import EntityRecognizer
 
 # Create an instance of the recognizer
 recognizer = EntityRecognizer()
@@ -67,12 +67,12 @@ print(results)
    ```
 2. **Create and Activate a Virtual Environment**:
    ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows use `venv\Scripts\activate`
    ```
 3. **Install Dependencies**:
     ```
-    pip install -r requirements/dev.txt
+    pip install -r requirements.txt
     ```
 
 
