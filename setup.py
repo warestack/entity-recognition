@@ -7,7 +7,7 @@ setup(
     name="entity-recognition-service",
     keywords="entity recognition, recommendation, technology",
     license="MIT",
-    version="0.1.3",
+    version="0.1.9",
     author="Cesar Goncalves",
     author_email="goncalves.cesaraugusto94@gmail.com",
     description="A library for technology entity recognition and recommendation",
@@ -15,7 +15,12 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/cgoncalves94/entity-recognition",
     packages=find_packages(include=['entity_recognition_service']),
-    package_data={'entity_recognition_service': ['data/*']},
+    package_data={
+        "entity_recognition_service": [
+            "data/*",
+            "functions/*",
+        ],
+    },
     include_package_data=True,
     classifiers=[
         "Development Status :: 3 - Alpha",
@@ -39,14 +44,11 @@ setup(
         "pandas>=1.0.0",
         "aiofiles>=0.8.0",
     ],
-    dependency_links=[
-        'https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl'
-    ],
     extras_require={
         "dev": [
             "pytest",
             "pytest-asyncio",
             "async-asgi-testclient",
         ],
-    }
+    },
 )

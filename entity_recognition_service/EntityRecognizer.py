@@ -1,15 +1,15 @@
 import json
 import asyncio
-from functions.entity_extraction import extract_tech_entities, initialize_matcher_with_patterns
-from functions.recommendation_generation import dynamic_score_entities, recommend_technologies
-from functions.topic_classification import classify_text
-from models import load_bertopic_model
-from utils import load_json_file
+from entity_recognition_service.functions.entity_extraction import extract_tech_entities, initialize_matcher_with_patterns
+from entity_recognition_service.functions.recommendation_generation import dynamic_score_entities, recommend_technologies
+from entity_recognition_service.functions.topic_classification import classify_text
+from entity_recognition_service.models import load_bertopic_model
+from entity_recognition_service.utils import load_json_file
 
 
 class EntityRecognizer:
     def __init__(self):
-        self.tech_entities = asyncio.run(load_json_file("entity_recognition_service/data/tech_entities.json"))
+        self.tech_entities = load_json_file("tech_entities.json")
         self.matcher = initialize_matcher_with_patterns(self.tech_entities)
         self.topic_model = asyncio.run(load_bertopic_model("MaartenGr/BERTopic_Wikipedia"))
         self.topic_info = self.topic_model.get_topic_info()

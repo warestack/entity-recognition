@@ -1,6 +1,7 @@
 import spacy
 from bertopic import BERTopic
 from transformers import AutoModel, AutoTokenizer
+from spacy.util import is_package
 
 
 async def load_embeddings_model():
@@ -34,10 +35,18 @@ async def load_bertopic_model(model_object_name):
 
 def load_spacy_model():
     """
-    Loads the Spacy model for English language.
+    Loads the spaCy model for the English language.
+    Checks if the model 'en_core_web_sm' is installed and prompts for download if not.
 
     Returns:
-      nlp (spacy.Language): The loaded Spacy model.
+        nlp (spacy.Language): The loaded spaCy model, or None if not found.
     """
-    nlp = spacy.load("en_core_web_sm")
-    return nlp
+    model_name = "en_core_web_sm"
+    if not is_package(model_name):  # Check if model is downloaded
+        print(f"The spaCy model {model_name} is not installed.")
+        print("Please run the following command to install it:")
+        print(f"python -m spacy download {model_name}")
+        return None
+    else:
+        nlp = spacy.load(model_name)
+        return nlp

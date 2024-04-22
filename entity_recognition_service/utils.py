@@ -1,39 +1,39 @@
 import asyncio
 import json
-import os
+from importlib import resources  
 
-import aiofiles
+from requests import JSONDecodeError
 import torch
 import torch.nn.functional as F
 from scipy.spatial.distance import cosine
 
-from models import load_embeddings_model
+from entity_recognition_service.models import load_embeddings_model
 
 tokenizer, model = asyncio.run(load_embeddings_model())
 
-async def load_json_file(file_path):
-    # Detailed explanation of the function's purpose
+def load_json_file(file_name):
     """
-    Load a JSON file from the given file path.
+    Load a JSON file from the installed package resources.
 
     Args:
-        file_path (str): The path to the JSON file.
+        file_name (str): The filename of the JSON file to load from the 'data' directory within the package.
 
     Returns:
         dict: The contents of the JSON file as a dictionary.
 
     Raises:
-        FileNotFoundError: If the file does not exist.
-
+        FileNotFoundError: If the file does not exist within the package resources.
     """
-    # Check if the file exists at the given path
-    if os.path.exists(file_path):
-        async with aiofiles.open(file_path, mode="r") as file:
-            # Load the JSON content from the file and return it as a dictionary
-            return json.loads(await file.read())
-    else:
-        # Raise an error if the file does not exist
-        raise FileNotFoundError(f"File not found: {file_path}")
+    package_path = 'entity_recognition_service.data'  # Define the package path to the resources
+
+    try:
+      # Open the resource file within the context manager
+      with resources.open_text(package_path, file_name) as file:
+        return json.load(file)
+    except FileNotFoundError:
+      raise FileNotFoundError(f"File not found: {file_name} in package resources.")
+    except JSONDecodeError as e:
+      raise JSONDecodeError(f"An error occurred while loading {file_name}: {str(e)}")
 
 
 def mean_pooling(model_output, attention_mask):

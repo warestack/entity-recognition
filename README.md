@@ -38,6 +38,12 @@ Install the library directly from PyPI:
 pip install entity-recognition-service
 ```
 
+After installing the package, you need to download the necessary spaCy model used for NLP operations:
+
+```
+python -m spacy download en_core_web_sm
+```
+
 ## Usage
 
 Here’s how to use the Entity Recognition library in your Python scripts:
