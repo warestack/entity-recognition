@@ -28,7 +28,7 @@ def load_json_file(file_name):
 
     try:
       # Open the resource file within the context manager
-      with resources.open_text(package_path, file_name) as file:
+      with resources.files(package_path).joinpath(file_name).open() as file:
         return json.load(file)
     except FileNotFoundError:
       raise FileNotFoundError(f"File not found: {file_name} in package resources.")

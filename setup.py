@@ -7,7 +7,7 @@ setup(
     name="entity-recognition-service",
     keywords="entity recognition, recommendation, technology",
     license="MIT",
-    version="0.1.9",
+    version="0.1.11",
     author="Cesar Goncalves",
     author_email="goncalves.cesaraugusto94@gmail.com",
     description="A library for technology entity recognition and recommendation",
