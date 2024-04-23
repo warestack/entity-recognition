@@ -5,20 +5,6 @@ The Entity-Recognition library utilizes `spaCy`, `BERTopic`, and `Transformers` 
 The library automatically downloads the required spaCy model if not installed, making it easy to get started.
 
 
-## Table of Contents
-- [Entity-Recognition](#entity-recognition)
-  - [Table of Contents](#table-of-contents)
-  - [Features](#features)
-  - [Installation](#installation)
-    - [Prerequisites](#prerequisites)
-    - [Getting Started](#getting-started)
-  - [Usage](#usage)
-  - [Development](#development)
-    - [Setting Up a Development Environment](#setting-up-a-development-environment)
-  - [Testing](#testing)
-  - [Contributing](#contributing)
-  - [License](#license)
-
 ## Features
 
 - **Technology Entity Extraction**: Automatically extract technology-related terms and tools from texts.
