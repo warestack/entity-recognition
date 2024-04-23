@@ -27,6 +27,7 @@ plotly==5.21.0
 preshed==3.0.9
 pynndescent==0.5.12
 python-dateutil==2.9.0.post0
+pytest-cov
 pytz==2024.1
 PyYAML==6.0.1
 regex==2024.4.16
