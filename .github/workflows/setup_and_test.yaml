@@ -30,7 +30,7 @@ jobs:
 
       # Set up the Python version
       - name: Set up the Python version ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           architecture: "x64"
@@ -63,7 +63,7 @@ jobs:
 
       # New step to upload Coverage XML report
       - name: Upload XML Coverage Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: xml-coverage-report
           path: coverage.xml
