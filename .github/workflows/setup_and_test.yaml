@@ -6,7 +6,6 @@ on:
       - "feature/*" # matches every branch containing 'feature/'
       - "bugfix/*" # matches every branch containing 'bugfix/'
       - "hotfix/*" # matches every branch containing 'hotfix/
-      - "main" # 
   release:
     types: [created]
 
