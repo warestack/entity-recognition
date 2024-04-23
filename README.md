@@ -2,6 +2,9 @@
 
 The Entity-Recognition library utilizes `spaCy`, `BERTopic`, and `Transformers` to provide a robust technology entity recognition system capable of identifying technological entities within texts and suggesting relevant technologies using advanced NLP techniques.
 
+The library automatically downloads the required spaCy model if not installed, making it easy to get started.
+
+
 ## Table of Contents
 - [Entity-Recognition](#entity-recognition)
   - [Table of Contents](#table-of-contents)
@@ -38,15 +41,14 @@ Install the library directly from PyPI:
 pip install entity-recognition-service
 ```
 
-After installing the package, you need to download the necessary spaCy model used for NLP operations:
+The required spaCy model (`en_core_web_sm`) will be automatically downloaded and installed if not already present on your system.
 
-```
-python -m spacy download en_core_web_sm
-```
 
-## Usage
 
-Here’s how to use the Entity Recognition library in your Python scripts:
+Usage
+-----
+
+Here's how to use the Entity Recognition library in your Python scripts:
 
 ```python
 from entity_recognition_service import EntityRecognizer
@@ -55,11 +57,43 @@ from entity_recognition_service import EntityRecognizer
 recognizer = EntityRecognizer()
 
 # Example texts
-texts = ["I need an Express.js Mongo database backend", "and a React TypeScript frontend for my project"]
+texts = ["I need an Express.js Mongo database backend"]
 
 # Process texts
 results = recognizer.process_texts(texts)
 print(results)
+```
+Expected output:
+
+```json
+[
+    {
+        "input_text": "I need an Express.js Mongo database backend",
+        "predicted_topic_name": "575_databases_database_tables_schema",
+        "extracted_entities": [
+            {
+                "entity_name": "Express.js",
+                "score": 1.0,
+                "category": "Backend Web Frameworks"
+            },
+            {
+                "entity_name": "MongoDB",
+                "score": 1.0,
+                "category": "Databases"
+            }
+        ],
+        "recommendations": [
+            {
+                "category": "Backend Web Frameworks",
+                "recommendation": "Express.js"
+            },
+            {
+                "category": "Databases",
+                "recommendation": "MongoDB"
+            }
+        ]
+    }
+]
 ```
 
 ## Development

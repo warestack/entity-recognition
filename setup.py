@@ -7,14 +7,14 @@ setup(
     name="entity-recognition-service",
     keywords="entity recognition, recommendation, technology",
     license="MIT",
-    version="0.1.11",
+    version="0.1.19",
     author="Cesar Goncalves",
     author_email="goncalves.cesaraugusto94@gmail.com",
     description="A library for technology entity recognition and recommendation",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/cgoncalves94/entity-recognition",
-    packages=find_packages(include=['entity_recognition_service']),
+    packages=find_packages(where=".", exclude=["tests", "tests.*"]),
     package_data={
         "entity_recognition_service": [
             "data/*",
@@ -34,7 +34,6 @@ setup(
     ],
     python_requires=">=3.7",
     install_requires=[
-        "asyncio>=3.4.3",
         "bertopic==0.16.1",
         "spacy>=3.0.0",
         "transformers>=4.0.0",
@@ -46,9 +45,9 @@ setup(
     ],
     extras_require={
         "dev": [
-            "pytest",
-            "pytest-asyncio",
-            "async-asgi-testclient",
+            "pytest>=6.0",
+            "pytest-asyncio>=0.15.1",
+            "async-asgi-testclient>=1.4.1",
         ],
     },
 )
