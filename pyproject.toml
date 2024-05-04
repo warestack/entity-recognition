@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "entity-recognition-service"
-version = "0.1.20"
+version = "0.1.26"
 description = "A library for technology entity recognition and recommendation"
 authors = ["Cesar Goncalves <goncalves.cesaraugusto94@gmail.com>"]
 license = "MIT"
@@ -8,18 +8,25 @@ readme = "README.md"
 
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.11"
 bertopic = "0.16.1"
-spacy = "^3.0.0"
-transformers = "^4.0.0"
-torch = "^1.0.0"
-scikit-learn = "^1.0.0"
-scipy = "^1.0.0"
-pandas = "^1.0.0"
-aiofiles = "^0.8.0"
+spacy = "^3.7.4"
+transformers = "^4.40.0"
+torch = "^2.2.2"
+scikit-learn = "^1.4.2"
+scipy = "^1.13.0"
+pandas = "^2.2.2"
+aiofiles = "^23.2.1"
+numpy = "^1.26.4"
+hdbscan = "^0.8.33"
 
-[tool.poetry.dev-dependencies]
-pytest = "^5.2"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.0"
+coverage = "^7.5.1"
+pytest-asyncio = "^0.23.6"
+
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
