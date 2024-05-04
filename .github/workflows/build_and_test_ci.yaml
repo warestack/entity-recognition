@@ -1,11 +1,6 @@
 name: "Setup, Build, and Test"
 
 on:
-  push:
-    branches:
-      - "feature/*"
-      - "bugfix/*"
-      - "hotfix/*"
   pull_request:
     branches:
       - main
