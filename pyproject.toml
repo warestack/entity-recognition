@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "entity-recognition-service"
-version = "0.1.27"
+version = "0.1.28"
 description = "A library for technology entity recognition and recommendation"
 authors = ["Cesar Goncalves <goncalves.cesaraugusto94@gmail.com>"]
 license = "MIT"

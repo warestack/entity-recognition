@@ -1,12 +1,11 @@
-name: "Setup, Build, Test, and Deploy"
+name: "Setup, Build, and Test"
 
 on:
   push:
     branches:
-      - "feature/*" # matches every branch containing 'feature/'
-      - "bugfix/*" # matches every branch containing 'bugfix/'
-      - "hotfix/*" # matches every branch containing 'hotfix/'
-      - "!main" # excludes the 'main' branch
+      - "feature/*"
+      - "bugfix/*"
+      - "hotfix/*"
   pull_request:
     branches:
       - main
@@ -15,7 +14,7 @@ on:
       - created
 
 jobs:
-  build-and-deploy:
+  build-and-test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -24,14 +23,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Poetry
-        run: pipx install poetry
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'poetry'
+
+      - name: Install Poetry
+        run: pipx install poetry
 
       - name: Install dependencies
         run: poetry install
@@ -64,5 +63,8 @@ jobs:
       - name: Build package
         run: poetry build
 
-      - name: Publish package to PyPI
-        run: poetry publish --username '__token__' --password ${{ secrets.PYPI_API_KEY }}
+      - name: Upload built package
+        uses: actions/upload-artifact@v4
+        with:
+          name: built-package
+          path: dist/

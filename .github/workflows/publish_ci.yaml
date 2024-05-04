@@ -1,0 +1,30 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Download built package
+        uses: actions/download-artifact@v2
+        with:
+          name: built-package
+          path: dist/
+
+      - name: Install Poetry
+        run: pipx install poetry
+
+      - name: Publish package to PyPI
+        run: poetry publish --username '__token__' --password ${{ secrets.PYPI_API_KEY }} --distributions-dir dist
