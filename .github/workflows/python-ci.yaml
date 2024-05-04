@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.11"]  
+        python-version: ["3.11"]  # Config the virtual env - Python version 3.11 will be used only.
 
     steps:
     - name: Checkout
@@ -30,7 +30,7 @@ jobs:
 
     - name: Install Poetry
       run: |
-        curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+        curl -sSL https://install.python-poetry.org | python3 -
 
     - name: Configure Poetry
       run: |
