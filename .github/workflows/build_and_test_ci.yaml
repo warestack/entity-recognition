@@ -3,17 +3,20 @@ name: "Setup, Build, and Test"
 on:
   pull_request:
     branches:
-      - main
+      - "main"
   release:
     types:
-      - created
+      - "created"
 
 jobs:
   build-and-test:
+    name: Build and test codebase
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         python-version: ["3.11"]
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
