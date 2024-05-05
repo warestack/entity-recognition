@@ -1,0 +1,45 @@
+name: "Release library on GitHub"
+
+on:
+  push:
+    branches:
+      - ${{ github.event.repository.default_branch }}
+
+jobs:
+  release:
+    name: Release library
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: ["3.11"] # Config the virtual env - Python version 3.11 will be used only.
+
+    permissions:
+      contents: write  # IMPORTANT: mandatory for making GitHub Releases
+
+    steps:
+      # Checkout GitHub branch's config
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Download binary package
+      - name: Download built package
+        uses: actions/download-artifact@v4
+        with:
+          name: built-package
+          path: dist/
+
+      # Generate checksums
+      - name: Generate SHA256 files for each wheel
+        run: |
+          sha256sum dist/*.whl > checksums.txt
+          cat checksums.txt
+
+      # Create release on GitHub
+      - name: Create release with SHA256 and Artifacts
+        uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: |
+            dist/*.whl 
+            checksums.txt
