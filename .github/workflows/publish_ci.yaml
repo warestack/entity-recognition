@@ -14,9 +14,6 @@ jobs:
       matrix:
         python-version: ["3.11"]
 
-    permissions:
-      id-token: write  # IMPORTANT: mandatory for trusted publishing
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
