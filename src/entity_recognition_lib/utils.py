@@ -7,7 +7,7 @@ import torch
 import torch.nn.functional as F
 from scipy.spatial.distance import cosine
 
-from entity_recognition_service.models import load_embeddings_model
+from entity_recognition_lib.models import load_embeddings_model
 
 tokenizer, model = asyncio.run(load_embeddings_model())
 
@@ -24,7 +24,7 @@ def load_json_file(file_name):
     Raises:
         FileNotFoundError: If the file does not exist within the package resources.
     """
-    package_path = 'entity_recognition_service.data'  # Define the package path to the resources
+    package_path = 'entity_recognition_lib.data'  # Define the package path to the resources
 
     try:
       # Open the resource file within the context manager

@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import patch
-from entity_recognition_service.functions.recommendation_generation import dynamic_score_entities, recommend_technologies
+from entity_recognition_lib.functions.recommendation_generation import dynamic_score_entities, recommend_technologies
 
 @pytest.fixture
 def tech_entities_fixture():
@@ -12,8 +12,8 @@ def tech_entities_fixture():
     }
 
 # Test to ensure outputs are consistent with the same inputs
-@patch('entity_recognition_service.functions.recommendation_generation.get_embedding')
-@patch('entity_recognition_service.functions.recommendation_generation.cosine_similarity')
+@patch('entity_recognition_lib.functions.recommendation_generation.get_embedding')
+@patch('entity_recognition_lib.functions.recommendation_generation.cosine_similarity')
 def test_dynamic_score_entities_consistency(mock_cosine_similarity, mock_get_embedding, tech_entities_fixture):
     mock_get_embedding.return_value = [0.5] * 100  # Mocking embedding as a 100-dimensional vector
     mock_cosine_similarity.return_value = 0.8      # Mocking cosine similarity to always return 0.8

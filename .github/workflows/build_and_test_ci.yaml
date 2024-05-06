@@ -1,0 +1,68 @@
+name: "Setup, Build, and Test"
+
+on:
+  pull_request:
+    branches:
+      - "main"
+  release:
+    types:
+      - "created"
+
+jobs:
+  build-and-test:
+    name: Build and test codebase
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Poetry
+        run: pipx install poetry
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'poetry'
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Run tests
+        run: |
+          poetry run coverage run --source=src/entity_recognition_lib -m pytest --doctest-modules --junitxml=junit/test-results.xml
+          poetry run coverage report
+          poetry run coverage html
+          poetry run coverage xml
+
+      - name: Upload JUnit Test Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: junit-test-results
+          path: junit/test-results.xml
+
+      - name: Upload HTML Coverage Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: html-coverage-report
+          path: htmlcov/
+
+      - name: Upload XML Coverage Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: xml-coverage-report
+          path: coverage.xml
+
+      - name: Build package
+        run: poetry build
+
+      - name: Upload built package
+        uses: actions/upload-artifact@v4
+        with:
+          name: built-package
+          path: dist/

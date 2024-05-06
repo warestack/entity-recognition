@@ -1,19 +1,46 @@
+[tool.poetry]
+name = "entity-recognition-lib"
+version = "0.1.28"
+description = "A library for technology entity recognition and recommendation"
+authors = ["Cesar Goncalves <goncalves.cesaraugusto94@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+
+[tool.poetry.dependencies]
+python = "^3.11"
+bertopic = "0.16.1"
+spacy = "^3.7.4"
+transformers = "^4.40.0"
+torch = "^2.2.2"
+scikit-learn = "^1.4.2"
+scipy = "^1.13.0"
+pandas = "^2.2.2"
+aiofiles = "^23.2.1"
+numpy = "^1.26.4"
+hdbscan = "^0.8.33"
+
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.0"
+coverage = "^7.5.1"
+pytest-asyncio = "^0.23.6"
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
 [tool.ruff]
 line-length = 160
-
-# Enable Pyflakes `E` and `F` codes by default.
 lint.select = [
-    # Pyflakes
-    "F",
-    # Pycodestyle
-    "E",
-    "W",
-    # isort
-    "I001",
+    "F",    # Pyflakes
+    "E",    # Pycodestyle
+    "W",    # Pycodestyle warnings
+    "I001", # isort
 ]
 lint.ignore = []
-
-# Exclude a variety of commonly ignored directories.
 exclude = [
     ".bzr",
     ".direnv",
@@ -36,13 +63,8 @@ exclude = [
     "venv",
 ]
 lint.per-file-ignores = {}
-
-# Allow unused variables when underscore-prefixed.
 lint.dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
-
-# Assume Python 3.11.
 target-version = "py311"
 
 [tool.ruff.lint.mccabe]
-# Unlike Flake8, default to a complexity level of 10.
 max-complexity = 10

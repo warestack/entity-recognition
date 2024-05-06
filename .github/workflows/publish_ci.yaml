@@ -1,0 +1,40 @@
+name: "Publish library to PyPI"
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  publish:
+    name: Publish library
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+
+    permissions:
+      id-token: write  # IMPORTANT: mandatory for trusted publishing
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Poetry
+        run: pipx install poetry
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'poetry'
+
+      - name: Download built package
+        uses: actions/download-artifact@v4
+        with:
+          name: built-package
+          path: dist/
+
+      - name: Publish package to PyPI
+        run: poetry publish --username '__token__' --password ${{ secrets.PYPI_API_KEY }} --distributions-dir dist
