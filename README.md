@@ -37,7 +37,7 @@ Usage
 Here's how to use the Entity Recognition library in your Python scripts:
 
 ```python
-from entity_recognition_service import EntityRecognizer
+from entity_recognition_lib import EntityRecognizer
 
 # Create an instance of the recognizer
 recognizer = EntityRecognizer()

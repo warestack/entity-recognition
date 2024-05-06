@@ -35,7 +35,7 @@ jobs:
 
       - name: Run tests
         run: |
-          poetry run coverage run --source=src/entity_recognition_service -m pytest --doctest-modules --junitxml=junit/test-results.xml
+          poetry run coverage run --source=src/entity_recognition_lib -m pytest --doctest-modules --junitxml=junit/test-results.xml
           poetry run coverage report
           poetry run coverage html
           poetry run coverage xml
