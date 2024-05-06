@@ -7,7 +7,7 @@ import torch
 import torch.nn.functional as F
 from scipy.spatial.distance import cosine
 
-from entity_recognition_service.models import load_embeddings_model
+from entity_recognition_lib.models import load_embeddings_model
 
 tokenizer, model = asyncio.run(load_embeddings_model())
 

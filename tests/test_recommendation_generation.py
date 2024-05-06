@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import patch
-from entity_recognition_service.functions.recommendation_generation import dynamic_score_entities, recommend_technologies
+from entity_recognition_lib.functions.recommendation_generation import dynamic_score_entities, recommend_technologies
 
 @pytest.fixture
 def tech_entities_fixture():

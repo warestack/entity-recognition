@@ -1,8 +1,8 @@
 import sys
 from spacy.matcher import Matcher
 
-from entity_recognition_service.models import load_spacy_model
-from entity_recognition_service.utils import load_json_file
+from entity_recognition_lib.models import load_spacy_model
+from entity_recognition_lib.utils import load_json_file
 
 nlp = load_spacy_model()
 

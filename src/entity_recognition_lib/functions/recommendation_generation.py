@@ -1,4 +1,4 @@
-from entity_recognition_service.utils import cosine_similarity, get_embedding
+from entity_recognition_lib.utils import cosine_similarity, get_embedding
 
 
 def dynamic_score_entities(entities, topic_keywords, user_input, tech_entities):

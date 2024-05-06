@@ -1,10 +1,10 @@
 import json
 import asyncio
-from entity_recognition_service.functions.entity_extraction import extract_tech_entities, initialize_matcher_with_patterns
-from entity_recognition_service.functions.recommendation_generation import dynamic_score_entities, recommend_technologies
-from entity_recognition_service.functions.topic_classification import classify_text
-from entity_recognition_service.models import load_bertopic_model
-from entity_recognition_service.utils import load_json_file
+from entity_recognition_lib.functions.entity_extraction import extract_tech_entities, initialize_matcher_with_patterns
+from entity_recognition_lib.functions.recommendation_generation import dynamic_score_entities, recommend_technologies
+from entity_recognition_lib.functions.topic_classification import classify_text
+from entity_recognition_lib.models import load_bertopic_model
+from entity_recognition_lib.utils import load_json_file
 
 
 class EntityRecognizer:

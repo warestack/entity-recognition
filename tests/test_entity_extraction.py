@@ -1,10 +1,10 @@
 import pytest
 
-from entity_recognition_service.functions.entity_extraction import (
+from entity_recognition_lib.functions.entity_extraction import (
     extract_tech_entities,
     initialize_matcher_with_patterns,
 )
-from entity_recognition_service.utils import load_json_file
+from entity_recognition_lib.utils import load_json_file
 
 # Adjusting the load_tech_entities function if load_json_file is not an async function
 def load_tech_entities():
