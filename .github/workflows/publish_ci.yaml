@@ -18,6 +18,10 @@ jobs:
       matrix:
         python-version: ["3.11"]
 
+    permissions:
+      contents: read
+      actions: read    # IMPORTANT: mandatory for downloading artifacts
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4

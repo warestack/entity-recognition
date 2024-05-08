@@ -20,6 +20,7 @@ jobs:
 
     permissions:
       contents: write  # IMPORTANT: mandatory for making GitHub Releases
+      actions: read    # IMPORTANT: mandatory for downloading artifacts
 
     steps:
       # Checkout GitHub branch's config
