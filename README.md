@@ -24,7 +24,7 @@ The library automatically downloads the required spaCy model if not installed, m
 Install the library directly from PyPI:
 
 ```bash
-pip install entity-recognition-service
+pip install entity-recognition-lib
 ```
 
 The required spaCy model (`en_core_web_sm`) will be automatically downloaded and installed if not already present on your system.
