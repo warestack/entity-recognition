@@ -2,7 +2,7 @@ name: "Release library on GitHub"
 
 on:
   workflow_run:
-    workflows: ["Build and Test Workflow"]
+    workflows: ["Setup, Build, and Test"]
     types:
       - completed
     branches:
