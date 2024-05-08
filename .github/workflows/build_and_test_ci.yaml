@@ -1,12 +1,13 @@
 name: "Setup, Build, and Test"
 
 on:
-  pull_request:
+  push:
     branches:
-      - "main"
-  release:
-    types:
-      - "created"
+      - main
+  pull_request:
+    types: [closed]
+    branches:
+      - main
 
 jobs:
   build-and-test:

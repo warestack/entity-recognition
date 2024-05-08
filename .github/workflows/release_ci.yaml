@@ -1,14 +1,18 @@
 name: "Release library on GitHub"
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Build and Test Workflow"]
+    types:
+      - completed
     branches:
-      - ${{ github.event.repository.default_branch }}
+      - main
 
 jobs:
   release:
     name: Release library
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     strategy:
       matrix:
@@ -26,6 +30,7 @@ jobs:
       - name: Download built package
         uses: actions/download-artifact@v4
         with:
+          run_id: ${{ github.event.workflow_run.id }}
           name: built-package
           path: dist/
 

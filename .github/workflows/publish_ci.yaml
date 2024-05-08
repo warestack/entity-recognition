@@ -1,14 +1,18 @@
 name: "Publish library to PyPI"
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Build and Test Workflow"]
+    types:
+      - completed
     branches:
-      - "main"
+      - main
 
 jobs:
   publish:
     name: Publish library
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     strategy:
       matrix:
@@ -30,6 +34,7 @@ jobs:
       - name: Download built package
         uses: actions/download-artifact@v4
         with:
+          run_id: ${{ github.event.workflow_run.id }}
           name: built-package
           path: dist/
 
