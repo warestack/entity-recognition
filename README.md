@@ -82,6 +82,15 @@ Expected output:
 ]
 ```
 
+For detailed usage examples and code snippets, please refer to the [examples directory](examples/README.md) in the repository.
+The examples cover various scenarios, including:
+
+Basic usage of the library for entity recognition and recommendation generation
+Advanced features such as result analysis and visualization
+Integration samples with popular frameworks like Flask and Streamlit
+
+We recommend exploring the examples to understand how to effectively utilize the Entity-Recognition library in your projects.
+
 ## Development
 
 ### Setting Up a Development Environment
