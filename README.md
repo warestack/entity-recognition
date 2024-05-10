@@ -82,7 +82,7 @@ Expected output:
 ]
 ```
 
-For detailed usage examples and code snippets, please refer to the [examples directory](examples/README.md) in the repository.
+For detailed usage examples and code snippets, please refer to the [examples directory](examples/EXAMPLES.md) in the repository.
 The examples cover various scenarios, including:
 
 Basic usage of the library for entity recognition and recommendation generation
