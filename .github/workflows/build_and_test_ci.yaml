@@ -1,16 +1,17 @@
 name: "Setup, Build, and Test"
 on:
   push:
-    branches: 
-      - main
-    paths:
-      - 'src/**'
-  pull_request:
-    types: [closed]
     branches:
       - main
     paths:
       - 'src/**'
+      - '.github/workflows/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - '.github/workflows/**'
 
 jobs:
   build-and-test:
@@ -24,6 +25,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for all branches and tags
 
       - name: Install Poetry
         run: pipx install poetry
@@ -62,10 +65,22 @@ jobs:
           name: xml-coverage-report
           path: coverage.xml
 
-      - name: Build package
+      - name: Bump version and commit (within PR branch)
+        if: github.event_name == 'pull_request'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          poetry version patch
+          git add pyproject.toml
+          git commit -m "Automated version bump [skip ci]"
+          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${{ github.head_ref }}
+
+      - name: Build package (only on main branch)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: poetry build
 
-      - name: Upload built package
+      - name: Upload built package (only on main branch)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v4
         with:
           name: built-package
