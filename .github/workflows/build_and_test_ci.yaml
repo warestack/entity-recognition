@@ -65,7 +65,6 @@ jobs:
           path: coverage.xml
 
       - name: Bump version and commit (only on main branch)
-        if: github.event_name == 'push'
         run: |
           poetry version patch
           git config --local user.email "action@github.com"
