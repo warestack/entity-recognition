@@ -1,9 +1,8 @@
 import spacy
-
 from bertopic import BERTopic
-from transformers import AutoModel, AutoTokenizer
-from spacy.util import is_package
 from spacy.cli import download
+from spacy.util import is_package
+from transformers import AutoModel, AutoTokenizer
 
 
 async def load_embeddings_model():

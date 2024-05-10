@@ -1,1 +1,1 @@
-from .EntityRecognizer import EntityRecognizer
+from .EntityRecognizer import EntityRecognizer  # noqa: F401
