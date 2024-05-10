@@ -64,6 +64,19 @@ jobs:
           name: xml-coverage-report
           path: coverage.xml
 
+      - name: Determine the branch name
+        id: vars
+        run: echo "::set-output name=branch::$(echo ${GITHUB_REF#refs/heads/})"
+
+      - name: Bump version and commit 
+        if: github.event_name == 'pull_request'
+        run: |
+          poetry version patch
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -am "Automated version bump [skip ci]"
+          git push origin ${{ steps.vars.outputs.branch }}
+
       - name: Bump version and commit (only on main branch)
         run: |
           poetry version patch
