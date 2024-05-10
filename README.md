@@ -16,7 +16,7 @@ The library automatically downloads the required spaCy model if not installed, m
 
 ### Prerequisites
 
-- Python 3.6+
+- Python 3.11+
 - pip
 
 ### Getting Started
