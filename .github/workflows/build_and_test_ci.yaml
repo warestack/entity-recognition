@@ -73,7 +73,7 @@ jobs:
           poetry version patch
           git add pyproject.toml
           git commit -m "Automated version bump [skip ci]"
-          git push origin HEAD:${{ github.head_ref }}
+          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${{ github.head_ref }}
 
       - name: Build package (only on main branch)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
