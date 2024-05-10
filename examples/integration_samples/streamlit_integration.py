@@ -5,7 +5,7 @@ recognizer = EntityRecognizer()
 
 st.title("Technology Entity Recognition")
 
-input_text = st.text_area("Enter text", "I need to build a web application using React and Node.js.")
+input_text = st.text_area("Enter text", "I need a database system good for transactions for my project, was thinking between mysql or mongodb.")
 
 if st.button("Recognize"):
     result = recognizer.process_text(input_text)
