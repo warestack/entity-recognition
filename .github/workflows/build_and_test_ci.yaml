@@ -65,21 +65,21 @@ jobs:
           name: xml-coverage-report
           path: coverage.xml
 
-      - name: Bump version and commit (within PR branch)
-        if: github.event_name == 'pull_request'
+      - name: Bump version and commit
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           poetry version patch
           git add pyproject.toml
           git commit -m "Automated version bump [skip ci]"
-          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${{ github.head_ref }}
+          git push
 
-      - name: Build package (only on main branch)
+      - name: Build package
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: poetry build
 
-      - name: Upload built package (only on main branch)
+      - name: Upload built package
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v4
         with:
