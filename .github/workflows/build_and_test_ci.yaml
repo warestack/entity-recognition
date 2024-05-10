@@ -1,5 +1,4 @@
 name: "Setup, Build, and Test"
-
 on:
   push:
     branches:
@@ -26,6 +25,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for all branches and tags
 
       - name: Install Poetry
         run: pipx install poetry
@@ -64,33 +65,22 @@ jobs:
           name: xml-coverage-report
           path: coverage.xml
 
-      - name: Determine the branch name
-        id: vars
-        run: echo "::set-output name=branch::$(echo ${GITHUB_REF#refs/heads/})"
-
-      - name: Bump version and commit 
+      - name: Bump version and commit (within PR branch)
         if: github.event_name == 'pull_request'
         run: |
-          poetry version patch
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -am "Automated version bump [skip ci]"
-          git push origin ${{ steps.vars.outputs.branch }}
-
-      - name: Bump version and commit (only on main branch)
-        run: |
           poetry version patch
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git commit -am "Automated version bump [skip ci]"
-          git push --follow-tags
+          git add pyproject.toml
+          git commit -m "Automated version bump [skip ci]"
+          git push origin HEAD:${{ github.head_ref }}
 
       - name: Build package (only on main branch)
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: poetry build
 
       - name: Upload built package (only on main branch)
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v4
         with:
           name: built-package
