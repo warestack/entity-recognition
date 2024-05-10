@@ -1,16 +1,18 @@
 name: "Setup, Build, and Test"
+
 on:
   push:
-    branches: 
-      - main
-    paths:
-      - 'src/**'
-  pull_request:
-    types: [closed]
     branches:
       - main
     paths:
       - 'src/**'
+      - '.github/workflows/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - '.github/workflows/**'
 
 jobs:
   build-and-test:
@@ -62,10 +64,21 @@ jobs:
           name: xml-coverage-report
           path: coverage.xml
 
-      - name: Build package
+      - name: Bump version and commit (only on main branch)
+        if: github.event_name == 'push'
+        run: |
+          poetry version patch
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -am "Automated version bump [skip ci]"
+          git push --follow-tags
+
+      - name: Build package (only on main branch)
+        if: github.event_name == 'push'
         run: poetry build
 
-      - name: Upload built package
+      - name: Upload built package (only on main branch)
+        if: github.event_name == 'push'
         uses: actions/upload-artifact@v4
         with:
           name: built-package
