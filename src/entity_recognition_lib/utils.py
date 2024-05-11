@@ -1,10 +1,10 @@
 import asyncio
 import json
-from importlib import resources  
+from importlib import resources
 
-from requests import JSONDecodeError
 import torch
 import torch.nn.functional as F
+from requests import JSONDecodeError
 from scipy.spatial.distance import cosine
 
 from entity_recognition_lib.models import load_embeddings_model

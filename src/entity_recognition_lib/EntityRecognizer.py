@@ -1,5 +1,6 @@
-import json
 import asyncio
+import json
+
 from entity_recognition_lib.functions.entity_extraction import extract_tech_entities, initialize_matcher_with_patterns
 from entity_recognition_lib.functions.recommendation_generation import dynamic_score_entities, recommend_technologies
 from entity_recognition_lib.functions.topic_classification import classify_text
