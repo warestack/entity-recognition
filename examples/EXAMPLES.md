@@ -15,17 +15,6 @@ The `detailed_entity_recognition.py` script serves as a starting point for under
 
 This example provides a solid foundation for working with the library and understanding its basic usage.
 
-### Process and Visualize Results
-
-The `process_and_visualize.py` script showcases how to process text using the entity-recognition library and visualize the results in a readable format. It demonstrates how to:
-
-- Create an instance of the `EntityRecognizer`
-- Process text and obtain the recognition results
-- Parse the JSON results into a Python list of dictionaries
-- Iterate over the results and print them in a formatted manner
-- Measure and display the execution time
-
-This example is useful for understanding how to work with the recognition results and present them in a user-friendly way.
 
 ## Advanced Features
 
@@ -38,6 +27,18 @@ For those looking to dive deeper into the capabilities of the entity-recognition
 - Visualize the extracted entities and recommendations using popular data visualization libraries
 
 This example is perfect for users who want to explore more advanced techniques and gain insights from the recognition results.
+
+### Process and Visualize Results
+
+The `process_and_visualize.py` script showcases how to process text using the entity-recognition library and visualize the results in a readable format. It demonstrates how to:
+
+- Create an instance of the `EntityRecognizer`
+- Process text and obtain the recognition results
+- Parse the JSON results into a Python list of dictionaries
+- Iterate over the results and print them in a formatted manner
+- Measure and display the execution time
+
+This example is useful for understanding how to work with the recognition results and present them in a user-friendly way.
 
 ## Integration Samples
 
