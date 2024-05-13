@@ -1,0 +1,43 @@
+default_stages:
+  - commit
+  - push
+
+# Configuration for pre-commit hooks
+repos:
+  # General hooks from the pre-commit-hooks repository
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+        # Removes any trailing whitespace from lines in text files
+      - id: end-of-file-fixer
+        # Ensures files end with a newline
+      - id: check-yaml
+        # Checks YAML files for syntax errors
+      - id: check-json
+        # Checks JSON files for syntax errors
+
+  # Hooks for linting Markdown files
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.40.0
+    hooks:
+        # Ensures consistent style for Markdown files
+      - id: markdownlint
+
+  # Hooks for spell checking
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.6
+    hooks:
+        # Spell checks files, ignoring specific words if needed
+      - id: codespell
+        args: ['--ignore-words-list=seperated']
+
+  # Ruff hooks for Python linting and formatting
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.4  # Use the latest version
+    hooks:
+      - id: ruff
+        args: [ --fix ]
+        # Runs the linter and auto-fixes issues where possible
+      - id: ruff-format
+        # Runs the formatter to enforce style consistency
