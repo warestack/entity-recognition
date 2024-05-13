@@ -1,5 +1,4 @@
-# Workflow for pre-commit hooks using GitHub Actions
-name: pre-commit-hooks
+name: "Run pre-commit hooks"
 
 on:
   pull_request:
