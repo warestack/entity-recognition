@@ -66,5 +66,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag_name: ${{ env.POETRY_VERSION }}
           files: |
-            dist/*.whl 
+            dist/*.whl
             checksums.txt

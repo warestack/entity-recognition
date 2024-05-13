@@ -26,7 +26,7 @@ class EntityRecognizer:
             "input_text": text,
             "predicted_topic_name": topic_name,
             "extracted_entities": sorted_entities,
-            "recommendations": recommendations
+            "recommendations": recommendations,
         }
 
     def process_texts(self, texts):
@@ -34,4 +34,6 @@ class EntityRecognizer:
         for text in texts:
             result = self.process_text(text)
             results.append(result)
-        return json.dumps(results, indent=4)  # Serialize the list of results to a JSON formatted string with indentation
+        return json.dumps(
+            results, indent=4
+        )  # Serialize the list of results to a JSON formatted string with indentation

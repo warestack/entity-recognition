@@ -9,7 +9,7 @@ recognizer = EntityRecognizer()
 texts = [
     "Exploring data streaming with Apache Kafka and stream processing.",
     "Building web applications using Django and integrating with PostgreSQL.",
-    "Advanced machine learning techniques with TensorFlow and PyTorch."
+    "Advanced machine learning techniques with TensorFlow and PyTorch.",
 ]
 
 # Process texts and extract entities
@@ -22,11 +22,11 @@ results = json.loads(results)
 category_counts = {}
 try:
     for result in results:
-        for entity in result['extracted_entities']:
-            if entity['category'] in category_counts:
-                category_counts[entity['category']] += 1
+        for entity in result["extracted_entities"]:
+            if entity["category"] in category_counts:
+                category_counts[entity["category"]] += 1
             else:
-                category_counts[entity['category']] = 1
+                category_counts[entity["category"]] = 1
 
     # Print the category counts
     print("Category Counts:")

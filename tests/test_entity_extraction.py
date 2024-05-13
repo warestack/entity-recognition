@@ -1,24 +1,27 @@
 import pytest
-
 from entity_recognition_lib.functions.entity_extraction import (
     extract_tech_entities,
     initialize_matcher_with_patterns,
 )
 from entity_recognition_lib.utils import load_json_file
 
+
 # Adjusting the load_tech_entities function if load_json_file is not an async function
 def load_tech_entities():
     return load_json_file("tech_entities.json")
+
 
 @pytest.fixture(scope="session")
 def tech_entities():
     """Fixture to load the technology entities from the JSON file."""
     return load_tech_entities()
 
+
 @pytest.fixture(scope="session")
 def matcher(tech_entities):
     """Fixture to initialize the Matcher with the patterns."""
     return initialize_matcher_with_patterns(tech_entities)
+
 
 @pytest.mark.asyncio
 async def test_load_tech_entities(tech_entities):
@@ -26,9 +29,11 @@ async def test_load_tech_entities(tech_entities):
     assert tech_entities is not None
     assert "MySQL" in tech_entities
 
+
 def test_initialize_matcher_with_patterns(matcher):
     """Tests that the matcher fixture correctly initializes the Matcher."""
     assert matcher is not None
+
 
 @pytest.mark.asyncio
 async def test_extract_tech_entities_single_entity(matcher, tech_entities):
@@ -37,6 +42,7 @@ async def test_extract_tech_entities_single_entity(matcher, tech_entities):
     entities = extract_tech_entities(text, tech_entities, matcher)
     assert len(entities) == 1
     assert entities[0]["entity"] == "MySQL"
+
 
 @pytest.mark.asyncio
 async def test_extract_tech_entities_multiple_entities(matcher, tech_entities):
@@ -47,6 +53,7 @@ async def test_extract_tech_entities_multiple_entities(matcher, tech_entities):
     assert entities[0]["entity"] == "MySQL"
     assert entities[1]["entity"] == "MongoDB"
 
+
 @pytest.mark.asyncio
 async def test_extract_tech_entities_different_types(matcher, tech_entities):
     """Tests extraction of entities with different types."""
@@ -56,6 +63,7 @@ async def test_extract_tech_entities_different_types(matcher, tech_entities):
     assert entities[0]["type"] == "JavaScript Library"  # React
     assert entities[1]["type"] == "Runtime Environment"  # NodeJS
     assert entities[2]["type"] == "NoSQL"  # MongoDB
+
 
 @pytest.mark.asyncio
 async def test_extract_tech_entities_fuzzy_matching(matcher, tech_entities):

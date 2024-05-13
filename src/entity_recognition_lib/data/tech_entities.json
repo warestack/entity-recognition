@@ -353,7 +353,7 @@
       ],
       "score": 9
   },
-  
+
   "AWS": {
       "type": "Cloud Computing",
       "category": "Cloud Service Providers",
@@ -462,7 +462,7 @@
       "patterns": [[{ "LOWER": { "FUZZY1": "helm" } }]],
       "score": 9
   },
-  
+
   "GraphQL": {
       "type": "Query Language",
       "category": "API Development",
@@ -527,7 +527,7 @@
       ],
       "score": 8
   },
-  
+
   "User Interface": {
       "type": "Frontend",
       "category": "Requirement",
@@ -590,7 +590,7 @@
       ],
       "score": 5
   },
-  
+
   "Cloud Deployment": {
       "type": "Deployment",
       "category": "Requirement",

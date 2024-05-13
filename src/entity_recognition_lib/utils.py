@@ -11,6 +11,7 @@ from entity_recognition_lib.models import load_embeddings_model
 
 tokenizer, model = asyncio.run(load_embeddings_model())
 
+
 def load_json_file(file_name):
     """
     Load a JSON file from the installed package resources.
@@ -24,16 +25,16 @@ def load_json_file(file_name):
     Raises:
         FileNotFoundError: If the file does not exist within the package resources.
     """
-    package_path = 'entity_recognition_lib.data'  # Define the package path to the resources
+    package_path = "entity_recognition_lib.data"  # Define the package path to the resources
 
     try:
-      # Open the resource file within the context manager
-      with resources.files(package_path).joinpath(file_name).open() as file:
-        return json.load(file)
+        # Open the resource file within the context manager
+        with resources.files(package_path).joinpath(file_name).open() as file:
+            return json.load(file)
     except FileNotFoundError:
-      raise FileNotFoundError(f"File not found: {file_name} in package resources.")
+        raise FileNotFoundError(f"File not found: {file_name} in package resources.")
     except JSONDecodeError as e:
-      raise JSONDecodeError(f"An error occurred while loading {file_name}: {str(e)}")
+        raise JSONDecodeError(f"An error occurred while loading {file_name}: {str(e)}")
 
 
 def mean_pooling(model_output, attention_mask):
@@ -64,7 +65,6 @@ def get_embedding(text):
     Returns:
         torch.Tensor: The embedding representation of the text.
     """
-
 
     # Tokenize the input text and prepare it for the model
     inputs = tokenizer(text, return_tensors="pt", padding=True, truncation=True, max_length=512)
