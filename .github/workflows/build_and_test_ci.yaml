@@ -27,6 +27,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Fetch all history for all branches and tags
+          token: ${{ secrets.ACTIONS_TOKEN }}
 
       - name: Install Poetry
         run: pipx install poetry
@@ -65,14 +66,17 @@ jobs:
           name: xml-coverage-report
           path: coverage.xml
 
+      - name: Config git credentials
+        uses: oleksiyrudenko/gha-git-credentials@v2-latest
+        with:
+          token: ${{ secrets.ACTIONS_TOKEN }}
+
       - name: Bump version and commit
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
           poetry version patch
           git add pyproject.toml
-          git commit -m "Automated version bump [skip ci]"
+          git commit -m "chore: Bump version automatically [skip ci]"
           git push
 
       - name: Build package
